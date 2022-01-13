@@ -126,7 +126,7 @@
                 "tags": [
                     "Add new player API"
                 ],
-                "summary": "Get todos",
+                "summary": "Create new player",
                 "requestBody": {
                     "description": "We can you this API to add new team to the system so that we can add a player to the team",
                     "required": true,
