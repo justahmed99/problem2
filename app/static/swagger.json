@@ -1,0 +1,188 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "Ahmad Mujahid Abdurrahman (Kitabisa.com Basic Test)",
+        "version": "1.0.0",
+        "title": "Problem 2 API Documentation"
+    },
+    "tags": [
+        {
+            "name": "Soccer API",
+            "description": "Soccer API"
+        }
+    ],
+    "servers": [
+        {
+            "url": "/"
+        }
+    ],
+    "components": {
+        "schemas": {
+            "Teams": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    }
+                }
+            },
+            "TeamName": {
+                "type": "query",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Players": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "number": {
+                        "type": "integer"
+                    },
+                    "team_name": {
+                        "type": "string"
+                    }
+                }
+            },
+            "PlayerDetail": {
+                "type": "query",
+                "properties": {
+                    "number": {
+                        "type": "integer"
+                    },
+                    "team": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    },
+    "paths": {
+        "/teams": {
+            "post": {
+                "tags": [
+                    "Add new team API"
+                ],
+                "summary": "Adding new team to the system",
+                "requestBody": {
+                    "description": "We can you this API to add new team to the system so that we can add a player to the team",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Teams"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Team added",
+                        "schema": {
+                            "$ref": "#/components/schemas/Teams"
+                        }
+                    },
+                    "403": {
+                        "description": "Team already exist",
+                        "schema": {
+                            "$ref": "#/components/schemas/Teams"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Get team information API"
+                ],
+                "summary": "Get team information API",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Team name information",
+                        "required": true,
+                        "type": "string",
+                        "schema": {
+                            "$ref": "#/components/schemas/TeamName"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "NOT FOUND"
+                    }
+                }
+            }
+        },
+        "/players": {
+            "post": {
+                "tags": [
+                    "Add new player API"
+                ],
+                "summary": "Get todos",
+                "requestBody": {
+                    "description": "We can you this API to add new team to the system so that we can add a player to the team",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Players"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/Players"
+                        }
+                    },
+                    "404": {
+                        "description": "NOT FOUND",
+                        "schema": {
+                            "$ref": "#/components/schemas/Players"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Get player API"
+                ],
+                "summary": "Get player detail",
+                "parameters": [
+                    {
+                        "name": "number",
+                        "in": "query",
+                        "description": "Player number",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "team",
+                        "in": "query",
+                        "description": "Team name",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "NOT FOUND"
+                    }
+                }
+            }
+        }
+    }
+}
